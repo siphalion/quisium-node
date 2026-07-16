@@ -1,0 +1,96 @@
+{
+  "name": "quisium",
+  "version": "0.1.0",
+  "description": "Production-grade security middleware for LLM calls — prompt injection detection, output validation, and tool-call enforcement.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./providers/openai": {
+      "types": "./dist/providers/openai.d.ts",
+      "import": "./dist/providers/openai.js",
+      "require": "./dist/providers/openai.cjs"
+    },
+    "./middleware/express": {
+      "types": "./dist/middleware/express.d.ts",
+      "import": "./dist/middleware/express.js",
+      "require": "./dist/middleware/express.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src tests"
+  },
+  "keywords": [
+    "llm",
+    "security",
+    "prompt-injection",
+    "jailbreak",
+    "openai",
+    "express",
+    "middleware",
+    "ai-safety"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/siphalion/quisium-node",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/siphalion/quisium-node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/siphalion/quisium-node/issues"
+  },
+  "peerDependencies": {
+    "openai": ">=4.0.0",
+    "js-yaml": ">=4.0.0",
+    "ajv": ">=8.0.0",
+    "express": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "openai": {
+      "optional": true
+    },
+    "js-yaml": {
+      "optional": true
+    },
+    "ajv": {
+      "optional": true
+    },
+    "express": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.14.0",
+    "ajv": "^8.17.1",
+    "express": "^4.19.2",
+    "js-yaml": "^4.1.0",
+    "openai": "^4.68.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3"
+  }
+}
