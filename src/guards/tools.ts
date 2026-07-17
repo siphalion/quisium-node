@@ -3,11 +3,11 @@
  * model wants to make and validates it against the policy's allowlist and the
  * tool's JSON schema.
  */
-import { createRequire } from "node:module";
+import { getSyncRequire } from "../internal/optionalRequire.js";
 import type { Policy } from "../policies.js";
 import { GuardType, ScanResult, ToolCall, round4 } from "../types.js";
 
-const requireOptional = createRequire(import.meta.url);
+const requireOptional = getSyncRequire();
 
 interface CheckResult {
   matched: boolean;
