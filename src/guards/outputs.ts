@@ -24,7 +24,7 @@ const RE_AWS_KEY = /\bAKIA[0-9A-Z]{16}\b/g;
 const RE_AWS_SECRET = /aws.{0,20}secret.{0,20}['"]?([A-Za-z0-9/+=]{40})\b/gid;
 const RE_GOOGLE_KEY = /\bAIza[0-9A-Za-z\-_]{35}\b/g;
 const RE_STRIPE_KEY = /\b(sk|pk)_(test|live)_[0-9a-zA-Z]{24,}\b/g;
-const RE_SLACK_TOKEN = /\bxox[bpoa]-[0-9A-Za-z\-]{10,50}\b/g;
+const RE_SLACK_TOKEN = /\bxox[bpoa]-[0-9A-Za-z-]{10,50}\b/g;
 const RE_GENERIC_API_KEY =
   /(api[_\-\s]?key|apikey|api[_\-\s]?secret|access[_\-\s]?key)\s*[:=]\s*['"]?([A-Za-z0-9\-_.]{16,64})['"]?/gi;
 

@@ -348,6 +348,7 @@ export async function loadPolicyFromYaml(path: string): Promise<Policy> {
   } catch (exc) {
     throw new Error(
       "js-yaml is required to load policies from YAML files. Install it with: npm install js-yaml",
+      { cause: exc },
     );
   }
 

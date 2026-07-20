@@ -256,7 +256,7 @@ export abstract class BaseProvider {
       scanResults.push(outputScan);
     }
 
-    const decision = this.buildCleanDecision(scanResults, outputScan.safeOutput ?? rawText);
+    const decision = this.buildCleanDecision(scanResults, activePolicy, outputScan.safeOutput ?? rawText);
 
     const elapsedMs = performance.now() - start;
     this._secLogger.logDecision(decision, { durationMs: elapsedMs, extra });
@@ -305,11 +305,11 @@ export abstract class BaseProvider {
     });
   }
 
-  private buildCleanDecision(scanResults: ScanResult[], safeOutput: string): GuardDecision {
+  private buildCleanDecision(scanResults: ScanResult[], policy: Policy, safeOutput: string): GuardDecision {
     const maxScore = scanResults.reduce((m, r) => Math.max(m, r.score), 0.0);
     const allReasons = scanResults.flatMap((sr) => sr.reasons);
 
-    const warnThreshold = this._policy.effectiveWarnThreshold(GuardType.OUTPUT);
+    const warnThreshold = policy.effectiveWarnThreshold(GuardType.OUTPUT);
     const warned = maxScore >= warnThreshold;
     const action = warned ? PolicyAction.WARN : PolicyAction.LOG;
 

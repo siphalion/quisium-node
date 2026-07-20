@@ -54,6 +54,17 @@ export class GenericProvider extends BaseProvider {
       return await this.callFn(messages, kwargs);
     } catch (exc) {
       if (exc instanceof ProviderError || exc instanceof ProviderTimeoutError) throw exc;
+      // Mirrors Python's `except TimeoutError` special case, which maps a
+      // timeout raised by the user-supplied call_fn to ProviderTimeoutError
+      // (status 408) instead of a generic ProviderError.
+      const name = (exc as { name?: string })?.name;
+      if (name === "TimeoutError" || name === "AbortError") {
+        throw new ProviderTimeoutError({
+          providerName: this.providerName,
+          timeoutSeconds: this.config.timeoutSeconds,
+          originalError: exc,
+        });
+      }
       throw new ProviderError({
         message: String((exc as Error)?.message ?? exc),
         providerName: this.providerName,
