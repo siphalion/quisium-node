@@ -93,6 +93,7 @@ const RE_UNICODE_LOOKALIKE = new RegExp(
     "]{4,}",
 );
 
+// eslint-disable-next-line no-misleading-character-class -- intentionally matching each zero-width code point individually, including U+200D (ZWJ)
 const RE_ZERO_WIDTH = new RegExp("[\\u200b\\u200c\\u200d\\u2060\\ufeff]{2,}");
 
 const RE_FICTIONAL_FRAMING = new RegExp(

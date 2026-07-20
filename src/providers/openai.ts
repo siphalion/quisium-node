@@ -16,7 +16,6 @@ import { BaseProvider, ChatMessage, ProviderConfig } from "./base.js";
 
 const requireOptional = getSyncRequire();
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type OpenAiModule = any;
 
 let cachedOpenAiModule: OpenAiModule | null = null;
